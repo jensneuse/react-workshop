@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build" : "docker build -t workshop/graphqlapi .",
+    "build" : "docker build --no-cache -t workshop/graphqlapi .",
     "showImages" : "docker images",
-    "start" : "node_modules/.bin/postgraphile -c postgresql://postgres@backend-database-postgresql/postgres -s workshop -w"
+    "start" : "node_modules/.bin/postgraphile -o -c postgresql://postgres@backend-database-postgresql/postgres -s workshop -w"
   },
   "author": "Jens Neuse <jens.neuse@gmx.de>",
   "license": "ISC",

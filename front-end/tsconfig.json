@@ -2,7 +2,12 @@
     "compilerOptions": {
         "noImplicitAny": true,
         "module": "commonjs",
-        "target": "es2015",
-        "jsx": "react"
+        "target": "es2016",
+        "jsx": "react",
+        "lib": [
+            "es2016",
+            "dom",
+            "esnext.asynciterable"
+        ]
     }
 }

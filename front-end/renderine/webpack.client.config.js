@@ -8,28 +8,33 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
-console.log('IS_PRODUCTION: ',IS_PRODUCTION);
+console.log('IS_PRODUCTION: ', IS_PRODUCTION);
 
 let plugins = [
-    new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        filename: 'vendor.js',
-        minChunks: function (module, count) {
-            return module.context && module.context.indexOf("node_modules") !== -1;
-        }
-    }),
+    new webpack
+        .optimize
+        .CommonsChunkPlugin({
+            name: 'vendor',
+            filename: 'vendor.js',
+            minChunks: function (module, count) {
+                return module.context && module
+                    .context
+                    .indexOf("node_modules") !== -1;
+            }
+        }),
     new webpack.DefinePlugin({
         'process.env': {
-            'NODE_ENV': JSON.stringify('production'),
+            'NODE_ENV': JSON.stringify('production')
         }
     }),
-    new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack
+        .optimize
+        .AggressiveMergingPlugin(),
+    new webpack
+        .optimize
+        .OccurrenceOrderPlugin(),
     new UglifyJSPlugin(),
-    new webpack.LoaderOptionsPlugin({
-        minimize: true,
-        debug: false
-    }),
+    new webpack.LoaderOptionsPlugin({minimize: true, debug: false}),
     /*new CompressionPlugin({
         asset: "[path].gz[query]",
         algorithm: "gzip",
@@ -40,36 +45,32 @@ let plugins = [
 ];
 
 if (IS_PRODUCTION) {
-    plugins.push(new BundleAnalyzerPlugin({
-        analyzerMode: 'static'
-    }));
+    plugins.push(new BundleAnalyzerPlugin({analyzerMode: 'static'}));
 } else {
     plugins.push(new webpack.HotModuleReplacementPlugin());
     plugins.push(new webpack.NoEmitOnErrorsPlugin());
 }
 
-const loaders = IS_PRODUCTION ?
-    [
+const loaders = IS_PRODUCTION
+    ? [
         {
             loader: 'awesome-typescript-loader'
         }
-    ] :
-    [
+    ]
+    : [
         {
             loader: 'react-hot-loader/webpack'
-        },
-        {
+        }, {
             loader: 'awesome-typescript-loader'
         }
     ];
 
 module.exports = {
-    entry: IS_PRODUCTION ? [
-        './src/client/client.tsx'
-    ] : [
-        'webpack-hot-middleware/client',
-        './src/client/client.tsx'
-    ],
+    entry: IS_PRODUCTION
+        ? ['./src/client/client.tsx']
+        : [
+            'webpack-hot-middleware/client', './src/client/client.tsx'
+        ],
     output: {
         filename: 'client.js',
         path: path.resolve(__dirname, 'dist/client'),
@@ -88,15 +89,22 @@ module.exports = {
 
     module: {
         rules: [
-            // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+            // All files with a '.ts' or '.tsx' extension will be handled by
+            // 'awesome-typescript-loader'.
             {
                 test: /\.tsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 use: loaders
             },
 
-            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            {enforce: "pre", test: /\.js$/, loader: "source-map-loader"}
+            // All output '.js' files will have any sourcemaps re-processed by
+            // 'source-map-loader'.
+            {
+                enforce: 'pre',
+                test: /\.js$/,
+                loader: "source-map-loader",
+                exclude: [/node_modules/, /build/, /__test__/]
+            }
         ]
     }
 };
