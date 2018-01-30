@@ -1,0 +1,13 @@
+# Default values for chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+replicaCount: 1
+image:
+  repository: workshop/graphqlapi
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  name: graphqlapi
+  type: ClusterIP
+  externalPort: 5000
+  internalPort: 5000

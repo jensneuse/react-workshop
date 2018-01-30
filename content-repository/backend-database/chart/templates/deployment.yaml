@@ -21,3 +21,10 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.service.internalPort }}
+          volumeMounts:
+            - name: sql
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: sql
+          configMap:
+            name: {{ .Release.Name }}-configmap

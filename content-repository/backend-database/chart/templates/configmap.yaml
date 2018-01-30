@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  v1.sql: |-
+{{ .Files.Get "v1.sql" | indent 4 }}
