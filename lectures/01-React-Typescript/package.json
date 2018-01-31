@@ -1,0 +1,21 @@
+{
+  "name": "01-react-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node_modules/.bin/tsc",
+    "watch": "node_modules/.bin/tsc -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "typescript": "^2.7.1"
+  },
+  "devDependencies": {
+    "@types/react": "^16.0.36",
+    "@types/react-dom": "^16.0.3"
+  }
+}
