@@ -8,8 +8,10 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { renderToString } from 'react-dom/server';
 import { AsyncComponentProvider, createAsyncContext } from 'react-async-component';
 import asyncBootstrapper from 'react-async-bootstrapper';
+import { Provider as ReduxProvider } from 'react-redux'
 
 import Routes from '../common/routes';
+import { store } from '../common/state';
 
 export default function (url: string): Promise<string> {
 
@@ -25,14 +27,17 @@ export default function (url: string): Promise<string> {
 
     const routerContext = {};
     const asyncContext = createAsyncContext();
+    const reduxStore = store();
 
     const App = (
         <AsyncComponentProvider asyncContext={asyncContext} >
-            <ApolloProvider client={client}>
-                <StaticRouter location={url} context={routerContext}>
-                    <Routes />
-                </StaticRouter>
-            </ApolloProvider>
+            <ReduxProvider store={reduxStore}>
+                <ApolloProvider client={client}>
+                    <StaticRouter location={url} context={routerContext}>
+                        <Routes />
+                    </StaticRouter>
+                </ApolloProvider>
+            </ReduxProvider>
         </AsyncComponentProvider>
     );
 
@@ -44,6 +49,7 @@ export default function (url: string): Promise<string> {
 
                     const asyncState = JSON.stringify(asyncContext.getState());
                     const initialState = JSON.stringify(client.extract()).replace(/</g, '\\u003c');
+                    const reduxState = JSON.stringify(reduxStore.getState());
 
                     resolve(`<!DOCTYPE html>
                     <html>
@@ -54,6 +60,7 @@ export default function (url: string): Promise<string> {
                         <div id="react-root">${reactHtmlContent}</div>
                         <script>window.__APOLLO_STATE__=${initialState}</script>
                         <script>window.__ASYNC_STATE__=${asyncState}</script>
+                        <script>window.__REDUX_STATE__=${reduxState}</script>
                         <script type="text/javascript" src="/vendor.js"></script>
                         <script type="text/javascript" src="/client.js"></script>
                     </body>

@@ -8,14 +8,15 @@ import ApolloClient from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { AsyncComponentProvider, createAsyncContext } from 'react-async-component'
 import asyncBootstrapper from 'react-async-bootstrapper'
-import { Provider } from 'react-redux'
+import { Provider as ReduxProvider } from 'react-redux'
 
 import Routes from '../common/routes'
 import { store } from '../common/state'
 
 declare let window: {
     __APOLLO_STATE__: any,
-    __ASYNC_STATE__: any
+    __ASYNC_STATE__: any,
+    __REDUX_STATE__: any
 }
 
 declare let module: {
@@ -31,16 +32,18 @@ const apolloClient = new ApolloClient({
 
 const reactRoot: HTMLElement = document.getElementById('react-root');
 
+const reduxStore = store(window.__REDUX_STATE__);
+
 const render = (Routings: React.ComponentClass) => {
     return (
         <AsyncComponentProvider rehydrateState={window.__ASYNC_STATE__} >
-            <Provider store={store}>
+            <ReduxProvider store={reduxStore}>
                 <ApolloProvider client={apolloClient}>
                     <Router>
                         <Routings/>
                     </Router>
                 </ApolloProvider>
-            </Provider>
+            </ReduxProvider>
         </AsyncComponentProvider>
     )
 }
@@ -57,5 +60,6 @@ const App = render(Routes);
 asyncBootstrapper(App)
     .then(() => hydrate(App, reactRoot));
 
-//delete window.__APOLLO_STATE__;
-//delete window.__ASYNC_STATE__;
+delete window.__APOLLO_STATE__;
+delete window.__ASYNC_STATE__;
+delete window.__REDUX_STATE__

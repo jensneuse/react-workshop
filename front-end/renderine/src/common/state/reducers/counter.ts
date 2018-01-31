@@ -1,7 +1,7 @@
 import { Action } from "redux";
 import {createAction, getType} from 'typesafe-actions'
 
-interface State {
+export interface State {
     count:number
 }
 
@@ -25,13 +25,13 @@ interface SubAction extends Action {
 
 export const countersAction = {
     increment: createAction('INCREMENT'),
-    add: createAction('ADD',(amount: number):AddAction => ({
+    add: createAction('ADD',(amount: number = 0):AddAction => ({
         type: 'ADD',
         payload: {
             amount
         }
     })),
-    sub: createAction('SUB',(amount: number):SubAction => ({
+    sub: createAction('SUB',(amount: number = 0):SubAction => ({
         type: 'SUB',
         payload: {
             amount
