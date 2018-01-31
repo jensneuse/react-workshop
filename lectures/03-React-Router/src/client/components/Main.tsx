@@ -1,8 +1,16 @@
 import * as React from 'react'
 import {Component} from 'react'
+import {RouteComponentProps} from 'react-router-dom'
 
-class Main extends Component {
+interface Props {
+
+}
+
+class Main extends Component<RouteComponentProps<Props>> {
     render(){
+
+        console.log(this.props);
+
         return (
             <h1>Main</h1>
         )
