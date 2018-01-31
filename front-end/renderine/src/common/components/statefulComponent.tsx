@@ -26,12 +26,10 @@ class StatefulComponent extends Component<Props> {
     }
 
     increase(){
-        console.log('increase');
         this.props.increment();
     }
 
     decrease(){
-        console.log('decrease');
         this.props.sub(1);
     }
 

@@ -5,6 +5,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StatsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin;
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CompressionPlugin = require("compression-webpack-plugin")
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
@@ -26,26 +27,22 @@ let plugins = [
         'process.env': {
             'NODE_ENV': IS_PRODUCTION ? JSON.stringify('production') : JSON.stringify('develop')
         }
-    }),
-    /*new webpack
-        .optimize
-        .AggressiveMergingPlugin(),
-    new webpack
-        .optimize
-        .OccurrenceOrderPlugin(),
-    new UglifyJSPlugin(),
-    new webpack.LoaderOptionsPlugin({minimize: true, debug: false}),
-    new CompressionPlugin({
+    })
+];
+
+if (IS_PRODUCTION) {
+    plugins.push(new BundleAnalyzerPlugin({analyzerMode: 'static'}));
+    plugins.push(new webpack.optimize.AggressiveMergingPlugin());
+    plugins.push(new webpack.optimize.OccurrenceOrderPlugin());
+    plugins.push(new UglifyJSPlugin());
+    plugins.push(new webpack.LoaderOptionsPlugin({minimize: true, debug: false}));
+    plugins.push(new CompressionPlugin({
         asset: "[path].gz[query]",
         algorithm: "gzip",
         test: /\.(js|html|css)$/,
         threshold: 0,
         minRatio: 0.8
-    })*/
-];
-
-if (IS_PRODUCTION) {
-    plugins.push(new BundleAnalyzerPlugin({analyzerMode: 'static'}));
+    }));
 } else {
     plugins.push(new webpack.HotModuleReplacementPlugin());
     plugins.push(new webpack.NoEmitOnErrorsPlugin());
@@ -78,7 +75,7 @@ module.exports = {
     },
 
     // Enable sourcemaps for debugging webpack's output.
-    devtool: "inline-source-map",
+    devtool: IS_PRODUCTION ? "source-map" : "inline-source-map",
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.

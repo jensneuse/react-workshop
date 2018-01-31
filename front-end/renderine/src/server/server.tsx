@@ -26,6 +26,8 @@ if (!IS_PRODUCTION){
     }));
 
     server.use(require("webpack-hot-middleware")(compiler));
+} else {
+    server.use('/',express.static('dist/client',{}));
 }
 
 server.get('*', (req: express.Request, res: express.Response) => {
