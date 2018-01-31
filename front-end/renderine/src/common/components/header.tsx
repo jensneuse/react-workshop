@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 
 const navigation: [{url: string,title:string}] = [
     {
-        url: '/main',
+        url: '/',
         title: 'Main'
     },
     {

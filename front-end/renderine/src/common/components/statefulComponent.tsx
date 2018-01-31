@@ -37,8 +37,6 @@ class StatefulComponent extends Component<Props> {
 
     render(){
 
-        console.log('stateful',this.props);
-
         return (
             <div>
                 <h3>Stateful Component</h3>
