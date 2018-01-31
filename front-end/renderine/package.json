@@ -35,8 +35,7 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "typesafe-actions": "^1.1.2",
-    "typescript": "^2.6.2",
-    "whatwg-fetch": "^2.0.3"
+    "typescript": "^2.6.2"
   },
   "devDependencies": {
     "@types/compression-webpack-plugin": "^0.4.0",
