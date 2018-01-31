@@ -34,6 +34,7 @@
     "react-render-image": "^1.1.1",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
+    "typesafe-actions": "^1.1.2",
     "typescript": "^2.6.2",
     "whatwg-fetch": "^2.0.3"
   },
@@ -42,6 +43,7 @@
     "@types/node": "^9.4.0",
     "@types/node-fetch": "^1.6.7",
     "@types/react-dom": "^16.0.3",
+    "@types/react-redux": "^5.0.14",
     "@types/systemjs": "^0.20.6",
     "@types/webpack-env": "^1.13.4",
     "apollo-codegen": "^0.18.3",
