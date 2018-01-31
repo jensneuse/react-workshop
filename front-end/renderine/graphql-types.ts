@@ -21,6 +21,7 @@ export interface getAllArticlesQuery {
       authorByAuthorId:  {
         __typename: "Author",
         id: string,
+        name: string,
       } | null,
     } | null >,
   } | null,
@@ -39,7 +40,6 @@ export interface getAllAuthorsQuery {
       nodeId: string,
       id: string,
       name: string,
-      bornIn: string | null,
       // Reads and enables pagination through a set of `Article`.
       articlesByAuthorId:  {
         __typename: "ArticlesConnection",

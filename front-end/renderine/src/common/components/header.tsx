@@ -17,6 +17,9 @@ class Header extends Component {
                     <li>
                         <Link to="/articles">Articles</Link>
                     </li>
+                    <li>
+                        <Link to="/fatComponent">Fat Component</Link>
+                    </li>
                 </ul>
             </div>
         )

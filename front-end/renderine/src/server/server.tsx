@@ -3,7 +3,7 @@ import {postgraphile} from 'postgraphile'
 import render from './serverRender'
 
 const IS_PRODUCTION: boolean = process.env.NODE_ENV === 'production';
-const PORT: number = parseInt(process.env.PORT) || 8080;
+const PORT: number = parseInt(process.env.PORT) || 8081;
 const HOST: string = 'localhost';
 
 const server = express();

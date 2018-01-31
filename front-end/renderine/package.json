@@ -8,7 +8,7 @@
     "build-server": "webpack --config webpack.server.config.js --progress",
     "build-client": "webpack --config webpack.client.config.js --progress",
     "start": "node ./dist/server/server.js",
-    "introspect-graphql-schema": "./node_modules/.bin/apollo-codegen introspect-schema http://localhost:8080/graphql --output schema.json",
+    "introspect-graphql-schema": "./node_modules/.bin/apollo-codegen introspect-schema http://localhost:8081/graphql --output schema.json",
     "generate-graphql-ts": "./node_modules/.bin/apollo-codegen generate **/*.tsx --addTypename --schema schema.json --target typescript --output graphql-types.ts"
   },
   "author": "",
@@ -27,7 +27,10 @@
     "postgraphile": "^4.0.0-alpha2.30",
     "react": "^16.2.0",
     "react-apollo": "^2.0.4",
+    "react-async-bootstrapper": "^1.1.2",
+    "react-async-component": "^1.0.2",
     "react-dom": "^16.2.0",
+    "react-render-image": "^1.1.1",
     "react-router-dom": "^4.2.2",
     "typescript": "^2.6.2",
     "whatwg-fetch": "^2.0.3"

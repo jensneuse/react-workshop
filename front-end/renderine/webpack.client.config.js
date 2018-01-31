@@ -24,10 +24,10 @@ let plugins = [
         }),
     new webpack.DefinePlugin({
         'process.env': {
-            'NODE_ENV': JSON.stringify('production')
+            'NODE_ENV': IS_PRODUCTION ? JSON.stringify('production') : JSON.stringify('develop')
         }
     }),
-    new webpack
+    /*new webpack
         .optimize
         .AggressiveMergingPlugin(),
     new webpack
@@ -35,7 +35,7 @@ let plugins = [
         .OccurrenceOrderPlugin(),
     new UglifyJSPlugin(),
     new webpack.LoaderOptionsPlugin({minimize: true, debug: false}),
-    /*new CompressionPlugin({
+    new CompressionPlugin({
         asset: "[path].gz[query]",
         algorithm: "gzip",
         test: /\.(js|html|css)$/,
@@ -78,7 +78,7 @@ module.exports = {
     },
 
     // Enable sourcemaps for debugging webpack's output.
-    devtool: "cheap-module-source-map",
+    devtool: "inline-source-map",
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.

@@ -878,18 +878,6 @@
               "deprecationReason": null
             },
             {
-              "name": "bornIn",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "articlesByAuthorId",
               "description": "Reads and enables pagination through a set of `Article`.",
               "args": [
@@ -1151,18 +1139,6 @@
               "deprecationReason": null
             },
             {
-              "name": "BORN_IN_ASC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "BORN_IN_DESC",
-              "description": null,
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "PRIMARY_KEY_ASC",
               "description": null,
               "isDeprecated": false,
@@ -1196,16 +1172,6 @@
             {
               "name": "name",
               "description": "Checks for equality with the object’s `name` field.",
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "bornIn",
-              "description": "Checks for equality with the object’s `bornIn` field.",
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
@@ -1867,16 +1833,6 @@
                 }
               },
               "defaultValue": null
-            },
-            {
-              "name": "bornIn",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
             }
           ],
           "interfaces": null,
@@ -2261,16 +2217,6 @@
             },
             {
               "name": "name",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "bornIn",
               "description": null,
               "type": {
                 "kind": "SCALAR",
