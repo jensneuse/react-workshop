@@ -8,8 +8,10 @@ import ApolloClient from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { AsyncComponentProvider, createAsyncContext } from 'react-async-component'
 import asyncBootstrapper from 'react-async-bootstrapper'
+import { Provider } from 'react-redux'
 
 import Routes from '../common/routes'
+import { store } from '../common/state'
 
 declare let window: {
     __APOLLO_STATE__: any,
@@ -32,11 +34,13 @@ const reactRoot: HTMLElement = document.getElementById('react-root');
 const render = (Routings: React.ComponentClass) => {
     return (
         <AsyncComponentProvider rehydrateState={window.__ASYNC_STATE__} >
-            <ApolloProvider client={apolloClient}>
-                <Router>
-                    <Routings />
-                </Router>
-            </ApolloProvider>
+            <Provider store={store}>
+                <ApolloProvider client={apolloClient}>
+                    <Router>
+                        <Routings/>
+                    </Router>
+                </ApolloProvider>
+            </Provider>
         </AsyncComponentProvider>
     )
 }
