@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {hydrate} from 'react-dom'
 
-import Hello from './components/Hello'
+import RootRoutes from './components/RootRoutes'
 
 const reactRoot = document.getElementById('react-root');
 
@@ -11,7 +11,7 @@ const render = (Routings: React.ComponentClass) => {
     )
 };
 
-hydrate(render(Hello),reactRoot);
+hydrate(render(RootRoutes),reactRoot);
 
 declare let module: {
     hot: {
@@ -19,8 +19,8 @@ declare let module: {
     }
 }
 
-module.hot.accept('./components/Hello', () => {
-    import('./components/Hello').then((module: any) => {
+module.hot.accept('./components/RootRoutes', () => {
+    import('./components/RootRoutes').then((module: any) => {
         hydrate(render(module.default), reactRoot);
     })
 })
