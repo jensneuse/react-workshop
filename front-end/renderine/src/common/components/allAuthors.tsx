@@ -38,7 +38,7 @@ class AllAuthors extends React.Component<Props> {
                 <ul>
                 {
                     this.props.data.allAuthors.nodes.map(author => (
-                        <li key={author.nodeId}>
+                        <li key={author.id}>
                             <div>Name: {author.name}</div>
                             <div>NumberOfArticles: {author.articlesByAuthorId.totalCount}</div>
                         </li>
