@@ -6,21 +6,25 @@
 This React Workshop has been used to get everyone of our team at
 [SDP][sdp-github-orga] up and running with our new tech-stack.
 
-## Table of Contents ## {#tos}
+## TOS
 
-- [Base Requirements](required)
-- [Screencast][4]
-- [Build a Docker Image (locally)](#build-docker-image) [Screencast][#screencast]
+- [Requirements](required)
+- [Start Minikube](#start-minikube)
+- [Setup Environment Variables for Docker Image Compilation](#setup-environment-variables-for-docker-image-compilation)
+- [Using helm](#using-helm)
+- [NPM Run Script(s)](#npm-run-scripts)
+- [Build a Docker Image (locally)](#build-the-docker-image-locally)
+- [Screencast](#screencast)
 
-## Base Requirements ## {#required}
+## Required
 
-Base Requirements that need to be installed, before you can contine.
+Base Requirements that need to be installed, before you can continue.
 
 - [Minikube][minikube-website]
 - [VirtualBox][virtualbox-website]
 - [Helm][helm-website]
 
-## Start Minikube ##
+## Start Minikube
 
 Start minikube by typing
 
@@ -36,7 +40,7 @@ kubectl get nodes
 
 There should ne none, because we haven't launched any node yet.
 
-## Setup Environment Variables for Docker Image Compilation ##
+## Setup Environment Variables for Docker Image Compilation
 
 For Linux/Mac it is this one here
 
@@ -44,7 +48,7 @@ For Linux/Mac it is this one here
 eval $(minikube docker-env)
 ```
 
-## Using helm ## {#using-helm}
+## Using helm
 
 List all Docker processes
 
@@ -103,7 +107,7 @@ Once the pod has become ready, change the current working directory to
 cd ../api
 ```
 
-## Build the Docker Image locally ## {#build-docker-image}
+## Build the Docker Image locally
 
 We have a `Dockerfile` which we will use to build our Docker image (locally).
 
@@ -113,7 +117,7 @@ If you're curious, you can peek into the file's contents
 cat ./Dockerfile
 ```
 
-### npm run scripts ### {#npm-run-scripts}
+### npm run scripts
 
 In this specific example, we have the build command (to build the Docker Image)
 included in the `package.json`, so we can run it via `npm run`.
@@ -192,15 +196,16 @@ Let's check if the pod is ready
 kubectl get pods | grep "api-graphqlapi"
 ```
 
-## Screencast ## {#screencast}
+## Screencast
 
-[![asciicast cover-image]][asciinema-link]
+[Jens][jens-github] recorded a screencast showing each step of the workshop
+[here][asciicinema-link]
 
 [upstream-repo]: https://github.com/jensneuse/react-workshop
 [sdp-github-orga]: https://github.com/t-online
 [asciicinema-link]: https://asciinema.org/a/t55y9ve9kc9oooKqsrOz4wFSB "ASCIICast Screencast"
-[asciicast cover-image]: https://asciinema.org/a/t55y9ve9kc9oooKqsrOz4wFSB.png "Cover-Image of Screencast"
 [minikube-website]: https://github.com/kubernetes/minikube
 [virtualbox-website]: https://www.virtualbox.org/
-[help-website]: https://github.com/kubernetes/helm
+[helm-website]: https://github.com/kubernetes/helm
 [jens-github]: https://github.com/jensneuse
+
